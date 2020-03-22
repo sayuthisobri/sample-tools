@@ -6,7 +6,7 @@ name: CI
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    tags: /.+/
   pull_request:
     branches: [ master ]
 
@@ -30,8 +30,8 @@ jobs:
       uses: actions/setup-go@v2-beta
       with:
         go-version: '^1.13.1' # The Go version to download (if necessary) and use.
-    - run: go get
     - run: |
+        go get
         mkdir -p out
         cp -R *.manifest ./out/
         go build -o=out/ms-tools.exe -ldflags="-H windowsgui" .
@@ -49,8 +49,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.sha }}
-        release_name: Release ${{ github.sha }}
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
         draft: false
         prerelease: false
     - name: Upload Release Asset

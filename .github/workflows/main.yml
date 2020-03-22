@@ -35,8 +35,8 @@ jobs:
     - name: Prepare
       run: |
         ls -al /usr/local/go/bin
-        go get github.com/akavel/rsrc
-        /usr/local/go/bin/rsrc -manifest ms-tools.exe.manifest -o ms-tools.syso
+        GOBIN=$PWD/bin go get github.com/akavel/rsrc
+        ./bin/rsrc -manifest ms-tools.exe.manifest -o ms-tools.syso
         go get
         mkdir -p out
     - name: Build

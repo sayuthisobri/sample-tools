@@ -33,7 +33,7 @@ jobs:
       run: |
         mkdir -p out
         go get
-        GOPATH=$PWD go get github.com/akavel/rsrc
+        GOPATH=/tmp go get github.com/akavel/rsrc
         $(go env GOPATH)/bin/rsrc -manifest ms-tools.exe.manifest -o rsrc.syso
     - name: Build
       run: |

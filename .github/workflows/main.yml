@@ -34,7 +34,6 @@ jobs:
         GOROOT: /usr/local/go
     - name: Prepare
       run: |
-        ls -al /usr/local/go/bin
         GOBIN=$PWD/bin go get github.com/akavel/rsrc
         ./bin/rsrc -manifest ms-tools.exe.manifest -o ms-tools.syso
         go get

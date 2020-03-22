@@ -33,7 +33,7 @@ jobs:
         mkdir -p out
         cp -R *.manifest ./out/
         go version
-        go build -o=out/ms-tools.exe -ldflags="-H windowsgui" .
+        GOOS=windows GOARCH=amd64 go build -o=out/ms-tools.exe -ldflags="-H windowsgui" .
 
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0

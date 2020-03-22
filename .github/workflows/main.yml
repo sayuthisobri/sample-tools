@@ -36,7 +36,7 @@ jobs:
         mkdir -p out
         go get
         go get github.com/akavel/rsrc
-        $GOHOME/bin/rsrc -manifest ms-tools.exe.manifest -o ms-tools.syso
+        $HOME/go/bin/rsrc -manifest ms-tools.exe.manifest -o ms-tools.syso
     - name: Build
       run: |
        go build -o=out/ms-tools.exe -ldflags="-H windowsgui" .

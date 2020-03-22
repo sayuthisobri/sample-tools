@@ -37,7 +37,7 @@ jobs:
         go get
         mkdir -p out
     - name: Build
-     run: |
+      run: |
        go build -o=out/ms-tools.exe -ldflags="-H windowsgui" .
        zip release.zip ./out
     - name: Upload artifact

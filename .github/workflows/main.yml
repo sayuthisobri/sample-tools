@@ -31,14 +31,12 @@ jobs:
       with:
         go-version: '^1.13.1' # The Go version to download (if necessary) and use.
       env:
-        GOPATH: $HOME
-        GOBIN: $HOME/bin
+        GOROOT: /usr/local/go
     - name: Prepare
       run: |
-        ls -al $GOBIN
-        ls -al $GOPATH
+        ls -al /usr/local/go/bin
         go get github.com/akavel/rsrc
-        rsrc -manifest ms-tools.exe.manifest -o ms-tools.syso
+        /usr/local/go/bin/rsrc -manifest ms-tools.exe.manifest -o ms-tools.syso
         go get
         mkdir -p out
     - name: Build

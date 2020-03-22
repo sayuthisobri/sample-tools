@@ -19,7 +19,6 @@ jobs:
     env:
       GOOS: windows
       GOARCH: amd64
-      GOHOME: /usr/local/go
           
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:

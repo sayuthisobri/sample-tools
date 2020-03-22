@@ -33,8 +33,9 @@ jobs:
       run: |
         mkdir -p out
         go get
-        GOPATH=$HOME/go go get github.com/akavel/rsrc
-        $HOME/go/bin/rsrc -manifest ms-tools.exe.manifest -o rsrc.syso
+        go get github.com/akavel/rsrc
+        go build github.com/akavel/rsrc
+        ./rsrc -manifest ms-tools.exe.manifest -o rsrc.syso
     - name: Build
       run: |
        go build -o=out/ms-tools.exe -ldflags="-H windowsgui" .

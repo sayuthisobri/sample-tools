@@ -19,7 +19,6 @@ jobs:
     env:
       GOOS: windows
       GOARCH: amd64
-      GOPATH: $PWD
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -36,7 +35,7 @@ jobs:
         mkdir -p out
         go get
         go get github.com/akavel/rsrc
-        $GOPATH/bin/rsrc -manifest ms-tools.exe.manifest -o rsrc.syso
+        $(go env GOPATH)/bin/rsrc -manifest ms-tools.exe.manifest -o rsrc.syso
     - name: Build
       run: |
        go build -o=out/ms-tools.exe -ldflags="-H windowsgui" .

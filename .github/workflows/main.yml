@@ -25,7 +25,6 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    # Runs a single command using the runners shell
     - name: Setup
       uses: actions/setup-go@v2-beta
       with:
@@ -34,7 +33,7 @@ jobs:
       run: |
         mkdir -p out
         go get
-        go get github.com/akavel/rsrc
+        GOPATH=$PWD go get github.com/akavel/rsrc
         $(go env GOPATH)/bin/rsrc -manifest ms-tools.exe.manifest -o rsrc.syso
     - name: Build
       run: |

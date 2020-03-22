@@ -36,7 +36,13 @@ jobs:
         cp -R *.manifest ./out/
         go build -o=out/ms-tools.exe -ldflags="-H windowsgui" .
         zip release.zip ./out/*
-
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        # Artifact name
+        name: release
+        # Directory containing files to upload
+        path: ./out
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -46,7 +52,7 @@ jobs:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
         draft: false
-        prerelease: false
+        prerelease: true
     - name: Upload Release Asset
       id: upload-release-asset 
       uses: actions/upload-release-asset@v1

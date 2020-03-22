@@ -19,6 +19,7 @@ jobs:
     env:
       GOOS: windows
       GOARCH: amd64
+      GOHOME: /usr/local/go
           
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -30,14 +31,12 @@ jobs:
       uses: actions/setup-go@v2-beta
       with:
         go-version: '^1.13.1' # The Go version to download (if necessary) and use.
-      env:
-        GOROOT: /usr/local/go
     - name: Prepare
       run: |
         mkdir -p out
         go get
         go get github.com/akavel/rsrc
-        $GOROOT/bin/rsrc -manifest ms-tools.exe.manifest -o ms-tools.syso
+        $GOHOME/bin/rsrc -manifest ms-tools.exe.manifest -o ms-tools.syso
     - name: Build
       run: |
        go build -o=out/ms-tools.exe -ldflags="-H windowsgui" .

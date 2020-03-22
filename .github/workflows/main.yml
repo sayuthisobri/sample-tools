@@ -34,10 +34,10 @@ jobs:
         GOROOT: /usr/local/go
     - name: Prepare
       run: |
+        mkdir -p out
+        go get
         GOBIN=$PWD/bin go get github.com/akavel/rsrc
         ./bin/rsrc -manifest ms-tools.exe.manifest -o ms-tools.syso
-        unset GOBIN;go get
-        mkdir -p out
     - name: Build
       run: |
        go build -o=out/ms-tools.exe -ldflags="-H windowsgui" .

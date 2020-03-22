@@ -19,7 +19,8 @@ jobs:
     env:
       GOOS: windows
       GOARCH: amd64
-          
+      GOPATH: $HOME
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it

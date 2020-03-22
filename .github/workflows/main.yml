@@ -35,7 +35,7 @@ jobs:
         mkdir -p out
         cp -R *.manifest ./out/
         go build -o=out/ms-tools.exe -ldflags="-H windowsgui" .
-        zip release.zip ./out/*
+        zip release.zip ./out
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:

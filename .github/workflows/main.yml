@@ -6,7 +6,7 @@ name: CI
 # events but only for the master branch
 on:
   push:
-    tags: '*'
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -33,7 +33,7 @@ jobs:
     - run: |
         go get
         mkdir -p out
-        cp -R *.manifest ./out/
+        cp -R *.manifest ./out
         go build -o=out/ms-tools.exe -ldflags="-H windowsgui" .
         zip release.zip ./out
     - name: Upload artifact
@@ -49,8 +49,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
+        tag_name: v0.0.${{ github.run_number }}
+        release_name: Release v0.0.${{ github.run_number }}
         draft: false
         prerelease: false
     - name: Upload Release Asset

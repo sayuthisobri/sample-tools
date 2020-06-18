@@ -35,7 +35,8 @@ jobs:
         go get
     - name: Build
       run: |
-       go build -o=out/ms-tools.exe -ldflags="-H windowsgui" .
+       go build -o=./out/ms-tools.exe -ldflags="-H windowsgui" .
+       ls -al ./out
        zip release.zip ./out
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
